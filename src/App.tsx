@@ -63,6 +63,12 @@ function App() {
             </div>
 
           </Box>
+          <Box mt="4">
+            <div style={{ color: 'red', padding: '10px' }}>uploaded</div>
+            <div id="uploaded-blobs" >
+
+            </div>
+          </Box>
         </Container>
       </Container>
     </>
