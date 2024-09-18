@@ -10,6 +10,20 @@ function App() {
     alert("upload file");
   }
 
+  function onSubmit(event: any) {
+    event.preventDefault();
+    enableForm(false);
+    console.log('Form submitted');
+  }
+
+  function enableForm(isEnabled: boolean) {
+    if (isEnabled) {
+    }
+    else {
+    }
+
+  }
+
   return (
     <>
       <Flex
@@ -49,19 +63,21 @@ function App() {
             </button>
           </Flex>
           <Box>
-            <div>selet novel files</div>
-            <Flex my="4">
-              <input id="file-input" type="file" className="form-control" required />
-            </Flex>
+            <form id="upload-form" onSubmit={onSubmit} className="mb-3">
 
-            <div>
-              <button id="submit" className="btn btn-primary" onClick={handClickUpload}>
-                <span id="submit-spinner" className="spinner-border spinner-border-sm"
-                  aria-hidden="true" ></span>
-                <span id="submit-text" role="status">Upload</span>
-              </button>
-            </div>
+              <div>selet novel files</div>
+              <Flex my="4">
+                <input id="file-input" type="file" className="form-control" required />
+              </Flex>
 
+              <div>
+                <button id="submit" className="btn btn-primary" onClick={handClickUpload}>
+                  <span id="submit-spinner" className="spinner-border spinner-border-sm"
+                    aria-hidden="true" ></span>
+                  <span id="submit-text" role="status">Upload</span>
+                </button>
+              </div>
+            </form>
           </Box>
           <Box mt="4">
             <div style={{ color: 'red', padding: '10px' }}>uploaded</div>
