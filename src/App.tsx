@@ -159,41 +159,54 @@ function App() {
           style={{ background: "var(--gray-a2)", minHeight: 500 }}
         >
           {/* <WalletStatus /> */}
-          <Box mt="4">
-            <div>register author</div>
-          </Box>
-          <Flex mt="4">
-            <input id="author" type="text" placeholder="author name" className="form-control" required />
-          </Flex>
-          <Flex mt="4">
-            <button id="register" className="btn btn-primary" onClick={handClickRegister}>
-              Regitster
-            </button>
-          </Flex>
-          <Box>
-            {/* 作者作品上传 */}
-            <form id="upload-form" onSubmit={onSubmit} className="mb-3">
 
-              <div>selet novel files</div>
-              <Flex my="4">
-                <input id="file-input" type="file" className="form-control" required />
+          <Flex gap="1" direction="row">
+            <Box style={{ flex: '1' }}>
+              {/* 中部左侧区域 */}
+              <Box mt="4">
+                <div>register author</div>
+              </Box>
+              <Flex mt="4">
+                <input id="author" type="text" placeholder="author name" className="form-control" required />
               </Flex>
-
-              <div>
-                <button id="submit" className="btn btn-primary" onClick={handClickUpload}>
-                  <span id="submit-spinner" className="spinner-border spinner-border-sm"
-                    aria-hidden="true" ></span>
-                  <span id="submit-text" role="status">Upload</span>
+              <Flex mt="4">
+                <button id="register" className="btn btn-primary" onClick={handClickRegister}>
+                  Regitster
                 </button>
-              </div>
-            </form>
-          </Box>
-          <Box mt="4">
-            <div style={{ color: 'red', padding: '10px' }}>uploaded</div>
-            <div id="uploaded-blobs" >
+              </Flex>
+            </Box>
+            <Box style={{ flex: '1' }}>
+              {/* 中部右侧区域，即侧边栏 */}
 
-            </div>
-          </Box>
+              <Box>
+                {/* 作者作品上传 */}
+                <form id="upload-form" onSubmit={onSubmit} className="mb-3">
+
+                  <div>selet novel files</div>
+                  <Flex my="4">
+                    <input id="file-input" type="file" className="form-control" required />
+                  </Flex>
+
+                  <div>
+                    <button id="submit" className="btn btn-primary" onClick={handClickUpload}>
+                      <span id="submit-spinner" className="spinner-border spinner-border-sm"
+                        aria-hidden="true" ></span>
+                      <span id="submit-text" role="status">Upload</span>
+                    </button>
+                  </div>
+                </form>
+              </Box>
+              <Box mt="4">
+                <div style={{ color: 'red', padding: '10px' }}>uploaded</div>
+                <div id="uploaded-blobs" >
+
+                </div>
+              </Box>
+            </Box>
+          </Flex>
+
+
+
         </Container>
       </Container>
     </>
