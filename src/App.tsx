@@ -207,9 +207,10 @@ function App() {
                 </div>
               </Box>
             </Box>
+            <Box style={{ flex: '1' }}>
+              <div> novel list </div>
+            </Box>
           </Flex>
-
-
 
         </Container>
       </Container>
