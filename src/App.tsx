@@ -7,6 +7,10 @@ function App() {
   function handClickRegister() {
     alert("the author have registered!");
   }
+
+  function handClickCreate() {
+    alert("the author have registered!");
+  }
   function handClickUpload() {
     alert("upload file");
   }
@@ -175,14 +179,32 @@ function App() {
                   Regitster
                 </button>
               </Flex>
+              {/* 分割线 */}
+              <Box mt="4">
+                <hr />
+              </Box>
               <Flex>
                 <CompAuthorList />
               </Flex>
             </Box>
             <Box style={{ flex: '1' }}>
-              {/* 中部上传区 */}
-
-              <Box>
+              {/* 中部区 */}
+              <Box mt="4">
+                <div>Create novel</div>
+                <Box mt="4">
+                  <input id="novel" type="text" placeholder="novel name" className="form-control" required />
+                </Box>
+                <Box mt="4">
+                  <button id="create" className="btn btn-primary" onClick={handClickCreate}>
+                    Create novel
+                  </button>
+                </Box>
+              </Box>
+              {/* 分割线 */}
+              <Box mt="4">
+                <hr />
+              </Box>
+              <Box mt="4">
                 {/* 作者作品上传 */}
                 <form id="upload-form" onSubmit={onSubmit} className="mb-3">
 
@@ -209,6 +231,31 @@ function App() {
             </Box>
             <Box style={{ flex: '1' }}>
               <div> novel list </div>
+            </Box>
+          </Flex>
+
+          <Flex mt="200px" gap="1" direction="column">
+            {/* 分割线 */}
+            <Box mt="4">
+              <hr />
+            </Box>
+            <Box>
+              connect us:
+            </Box>
+            <Box style={{ flex: '1' }}>
+              <div>
+                TG :
+                <a href="https://t.me/etbood" target="_blank">
+                  https://t.me/etbood
+                </a>
+              </div>
+
+              <div>
+                X :
+                <a href="https://x.com/SdSummer2" target="_blank">
+                  https://x.com/SdSummer2
+                </a>
+              </div>
             </Box>
           </Flex>
 
