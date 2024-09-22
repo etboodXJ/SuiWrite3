@@ -78,7 +78,7 @@ module write3::write3 {
 
     //admin
     public struct Write3AdminCap has key,store{
-        id:UID, //object id
+      id:UID, //object id
     }
 
     //register

@@ -1,6 +1,7 @@
 import { ConnectButton } from "@mysten/dapp-kit";
 import { Box, Container, Flex, Heading } from "@radix-ui/themes";
 import { WalletStatus } from "./WalletStatus";
+import { CompAuthorList } from './CompAuthorList';
 
 function App() {
   function handClickRegister() {
@@ -162,7 +163,7 @@ function App() {
 
           <Flex gap="1" direction="row">
             <Box style={{ flex: '1' }}>
-              {/* 中部左侧区域 */}
+              {/* 注册区域 */}
               <Box mt="4">
                 <div>register author</div>
               </Box>
@@ -174,9 +175,12 @@ function App() {
                   Regitster
                 </button>
               </Flex>
+              <Flex>
+                <CompAuthorList />
+              </Flex>
             </Box>
             <Box style={{ flex: '1' }}>
-              {/* 中部右侧区域，即侧边栏 */}
+              {/* 中部上传区 */}
 
               <Box>
                 {/* 作者作品上传 */}

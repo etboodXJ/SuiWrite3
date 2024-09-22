@@ -20,4 +20,5 @@ export function WalletStatus() {
       <OwnedObjects />
     </Container>
   );
+
 }
