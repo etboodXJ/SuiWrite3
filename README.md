@@ -35,3 +35,8 @@ To build your app for deployment you can run
 ```bash
 pnpm build
 ```
+
+```bash
+pnpm add @mysten/sui
+```
+

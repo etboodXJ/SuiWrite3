@@ -5,3 +5,4 @@ node_modules
 counter/
 
 local.md
+*.bat

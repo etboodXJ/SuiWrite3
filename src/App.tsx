@@ -1,17 +1,64 @@
-import { ConnectButton, useCurrentAccount } from "@mysten/dapp-kit";
+import { ConnectButton, useCurrentAccount, useSignAndExecuteTransactionBlock, useSuiClientInfiniteQuery, useSuiClientQuery } from "@mysten/dapp-kit";
+import { TransactionBlock } from "@mysten/sui.js/transactions";
+// import { Transaction } from "@mysten/sui/transactions";
 import { Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import { WalletStatus } from "./WalletStatus";
 import { CompAuthorList } from './CompAuthorList';
 import LowString from "./LowString";
 import { useNetworkVariable } from "./networkConfig";
+import { useState } from "react";
 
 function App() {
   const account = useCurrentAccount();
   const write3PackageId = useNetworkVariable("write3PackageId");
   console.log("write3PackageId", write3PackageId);
 
+  const PACKAGE_ID = write3PackageId;
+  const MODULE_NAME = "write3";
+  const CREATE_FUNCTION_NAME = "createAuthor";
+  const AuthorRoom_ID = "0xccd79d4607959269f25f9b76de573e8d93b7b3240c68d37550c69efd9a81f18c";
+
+  const [AuthorName, setAuthorName] = useState('author');
+
+  const { mutate: signAndExecuteTransaction } =
+    useSignAndExecuteTransactionBlock();
+
   function handClickRegister() {
     alert("the author have registered!");
+    let txb = new TransactionBlock();
+    txb.moveCall({
+      target: `${PACKAGE_ID}::${MODULE_NAME}::${CREATE_FUNCTION_NAME}`,
+      arguments: [
+        txb.object(AuthorRoom_ID),
+        txb.pure.string(AuthorName),
+        txb.pure.bool(false),
+        txb.pure.u64(0),
+      ],
+    });
+
+    txb.setSender(account!.address);
+
+    signAndExecuteTransaction(
+      {
+        transactionBlock: txb,
+        options: {
+          showObjectChanges: true,
+        },
+      },
+      {
+        async onSuccess(data: any) {
+          console.log("create success");
+          console.log(data);
+          alert("create success");
+
+        },
+        onError() {
+          console.log("create error");
+          alert("create error");
+
+        },
+      }
+    );
   }
 
   function handClickCreate() {
@@ -257,8 +304,8 @@ function App() {
             <Box style={{ flex: '1' }}>
               <div>
                 TG :
-                <a href="https://t.me/etbood" target="_blank">
-                  https://t.me/etbood
+                <a href="https://t.me/+zOCqBdkagrlmODk9" target="_blank">
+                  https://t.me/+zOCqBdkagrlmODk9
                 </a>
               </div>
 
