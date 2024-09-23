@@ -1,9 +1,12 @@
-import { ConnectButton } from "@mysten/dapp-kit";
-import { Box, Container, Flex, Heading } from "@radix-ui/themes";
+import { ConnectButton, useCurrentAccount } from "@mysten/dapp-kit";
+import { Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import { WalletStatus } from "./WalletStatus";
 import { CompAuthorList } from './CompAuthorList';
+import LowString from "./LowString";
 
 function App() {
+  const account = useCurrentAccount();
+
   function handClickRegister() {
     alert("the author have registered!");
   }
@@ -150,6 +153,12 @@ function App() {
       >
         <Box>
           <Heading>Sui Write3 Demo</Heading>
+          <Box>
+            {account ? (<>
+              <Text>Address: <LowString text={account.address as string}></LowString></Text>
+            </>) : (<div>Please connect your wallet</div>)
+            }
+          </Box>
         </Box>
 
         <Box>
