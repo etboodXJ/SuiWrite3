@@ -265,6 +265,12 @@ function App() {
                   https://x.com/SdSummer2
                 </a>
               </div>
+              <div>
+                GitHub :
+                <a href="https://github.com/etboodXJ/SuiWrite3.git" target="_blank">
+                  https://github.com/etboodXJ/SuiWrite3.git
+                </a>
+              </div>
             </Box>
           </Flex>
 
