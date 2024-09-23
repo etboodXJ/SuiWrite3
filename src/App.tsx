@@ -202,7 +202,7 @@ function App() {
         }}
       >
         <Box>
-          <Heading>Sui Write3 Demo</Heading>
+          <Heading>Sui Write3 Demo (testnet)</Heading>
           <Box>
             {account ? (<>
               <Text>Address: <LowString text={account.address as string}></LowString></Text>
