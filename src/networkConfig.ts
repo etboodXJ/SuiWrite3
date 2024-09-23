@@ -11,19 +11,19 @@ const { networkConfig, useNetworkVariable, useNetworkVariables } =
     devnet: {
       url: getFullnodeUrl("devnet"),
       variables: {
-        counterPackageId: DEVNET_COUNTER_PACKAGE_ID,
+        write3PackageId: DEVNET_COUNTER_PACKAGE_ID,
       },
     },
     mainnet: {
       url: getFullnodeUrl("mainnet"),
       variables: {
-        counterPackageId: MAINNET_COUNTER_PACKAGE_ID,
+        write3PackageId: MAINNET_COUNTER_PACKAGE_ID,
       },
     },
     testnet: {
       url: getFullnodeUrl("testnet"),
       variables: {
-        counterPackageId: TESTNET_COUNTER_PACKAGE_ID,
+        write3PackageId: TESTNET_COUNTER_PACKAGE_ID,
       },
     },
   });

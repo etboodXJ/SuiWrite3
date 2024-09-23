@@ -3,9 +3,12 @@ import { Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import { WalletStatus } from "./WalletStatus";
 import { CompAuthorList } from './CompAuthorList';
 import LowString from "./LowString";
+import { useNetworkVariable } from "./networkConfig";
 
 function App() {
   const account = useCurrentAccount();
+  const write3PackageId = useNetworkVariable("write3PackageId");
+  console.log("write3PackageId", write3PackageId);
 
   function handClickRegister() {
     alert("the author have registered!");
