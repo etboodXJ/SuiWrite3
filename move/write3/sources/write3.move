@@ -78,7 +78,7 @@ module write3::write3 {
 
     //admin
     public struct Write3AdminCap has key,store{
-      id:UID, //object id
+        id:UID, //object id
     }
 
     //register
@@ -235,6 +235,16 @@ module write3::write3 {
         
     }
 
+    // 删除章节
+    public entry fun deleteChapter(authorcap: &mut AuthorCap,work:&mut Work,chapterIdx:u64, ctx: &mut TxContext) {
+        let user = tx_context::sender(ctx);
+        assert!(authorcap.useraddress == user ,EAuthorNotAuthor);
+        let Chapter{id,title,content,blobid,created_at} = table::remove(&mut work.chapterList,chapterIdx);
+        object::delete(id);
+
+    }
+
+
     /*
 
     // 删除作品
@@ -242,9 +252,5 @@ module write3::write3 {
         let work = destroy<Work>(id);
     }
 
-    // 删除章节
-    public entry fun deleteChapter(id: UID, ctx: &mut TxContext) {
-        let chapter = destroy<Chapter>(id);
-    }
     */
 }
