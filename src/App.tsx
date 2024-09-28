@@ -6,7 +6,8 @@ import { WalletStatus } from "./WalletStatus";
 import { CompAuthorList } from './CompAuthorList';
 import LowString from "./LowString";
 import { useNetworkVariable } from "./networkConfig";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { SuiEvent } from "@mysten/sui.js/client";
 
 function App() {
   const account = useCurrentAccount();
@@ -17,8 +18,55 @@ function App() {
   const MODULE_NAME = "write3";
   const CREATE_FUNCTION_NAME = "createAuthor";
   const AuthorRoom_ID = "0xccd79d4607959269f25f9b76de573e8d93b7b3240c68d37550c69efd9a81f18c";
+  const AuthorRoomCreateEvent = "AuthorRoomCreateEvent";
+
+
+  const {
+    data: write3Events,
+    refetch: refetchEvents,
+    fetchNextPage,
+    hasNextPage,
+  } = useSuiClientInfiniteQuery(
+    "queryEvents",
+    {
+      query: {
+        MoveModule: {
+          package: PACKAGE_ID,
+          module: MODULE_NAME,
+        },
+      },
+      order: "descending",
+    },
+    {
+      refetchInterval: 30000,
+    }
+  );
+
+  const authorRoomEvents = useMemo(() => {
+    return (
+      write3Events?.pages.map((pEvent) =>
+        pEvent.data.filter((event) => event.type.includes(AuthorRoomCreateEvent))
+      ) || []
+    ).flat(Infinity) as SuiEvent[];
+  }, [write3Events]);
+
+  if (authorRoomEvents) {
+    console.log('authorRoomEvents', authorRoomEvents);
+  }
 
   const [AuthorName, setAuthorName] = useState('author');
+
+  // 处理输入变化的函数
+  const handleInputChange = (event: { target: { value: any; }; }) => {
+    const { value } = event.target;
+    // 检查输入长度是否超过20个字符
+    if (value.length <= 20) {
+      setAuthorName(value);
+    } else {
+      // 设置为20个字符
+      setAuthorName(value.substring(0, 20));
+    }
+  };
 
   const { mutate: signAndExecuteTransaction } =
     useSignAndExecuteTransactionBlock();
@@ -235,7 +283,10 @@ function App() {
                 <div>register author</div>
               </Box>
               <Flex mt="4">
-                <input id="author" type="text" placeholder="author name" className="form-control" required />
+                <input id="author" type="text" placeholder="author name" className="form-control" required
+                  value={AuthorName}
+                  onChange={handleInputChange}
+                />
               </Flex>
               <Flex mt="4">
                 <button id="register" className="btn btn-primary" onClick={handClickRegister}>
