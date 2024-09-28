@@ -24,7 +24,11 @@ function App() {
     useSignAndExecuteTransactionBlock();
 
   function handClickRegister() {
-    alert("the author have registered!");
+    if (!account) {
+      alert("please connect wallet");
+      return;
+    }
+
     let txb = new TransactionBlock();
     txb.moveCall({
       target: `${PACKAGE_ID}::${MODULE_NAME}::${CREATE_FUNCTION_NAME}`,
