@@ -8,6 +8,7 @@ import LowString from "./LowString";
 import { useNetworkVariable } from "./networkConfig";
 import { useMemo, useState } from "react";
 import { SuiEvent } from "@mysten/sui.js/client";
+import authorRoomEventHook from "./hooks/authorRoomEventHook";
 
 function App() {
   const account = useCurrentAccount();
@@ -20,38 +21,12 @@ function App() {
   const AuthorRoom_ID = "0xccd79d4607959269f25f9b76de573e8d93b7b3240c68d37550c69efd9a81f18c";
   const AuthorRoomCreateEvent = "AuthorRoomCreateEvent";
 
+  const { authorRoomEvents, authorRoomID } = authorRoomEventHook(PACKAGE_ID, MODULE_NAME, AuthorRoomCreateEvent);
 
-  const {
-    data: write3Events,
-    refetch: refetchEvents,
-    fetchNextPage,
-    hasNextPage,
-  } = useSuiClientInfiniteQuery(
-    "queryEvents",
-    {
-      query: {
-        MoveModule: {
-          package: PACKAGE_ID,
-          module: MODULE_NAME,
-        },
-      },
-      order: "descending",
-    },
-    {
-      refetchInterval: 30000,
-    }
-  );
+  if (authorRoomID) {
 
-  const authorRoomEvents = useMemo(() => {
-    return (
-      write3Events?.pages.map((pEvent) =>
-        pEvent.data.filter((event) => event.type.includes(AuthorRoomCreateEvent))
-      ) || []
-    ).flat(Infinity) as SuiEvent[];
-  }, [write3Events]);
+    console.log('authorRoomID', authorRoomID);
 
-  if (authorRoomEvents) {
-    console.log('authorRoomEvents', authorRoomEvents);
   }
 
   const [AuthorName, setAuthorName] = useState('author');
