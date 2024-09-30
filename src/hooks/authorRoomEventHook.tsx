@@ -33,14 +33,15 @@ export default function authorRoomEventHook(packageid: string, module: string, e
     ).flat(Infinity) as SuiEvent[];
   }, [write3Events]);
 
-  // if (authorRoomEvents) {
-  //   console.log('authorRoomEvents', authorRoomEvents);
-  // }
+  if (authorRoomEvents && authorRoomEvents[0]?.parsedJson) {
+    //console.log('authorRoomEvents', authorRoomEvents);
+    localStorage.setItem("authorRoomID", (authorRoomEvents[0]?.parsedJson as { id: string })?.id || '' as string);
+  }
 
   return {
     authorRoomEvents,
     authorRoomID: (authorRoomEvents[0]?.parsedJson as { id: string })?.id || '' as string,
-    refetchEvents, fetchNextPage, hasNextPage
+    //refetchEvents, fetchNextPage, hasNextPage
   };
 
 }

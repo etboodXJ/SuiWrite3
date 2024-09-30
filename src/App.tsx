@@ -9,6 +9,8 @@ import { useNetworkVariable } from "./networkConfig";
 import { useMemo, useState } from "react";
 import { SuiEvent } from "@mysten/sui.js/client";
 import authorRoomEventHook from "./hooks/authorRoomEventHook";
+import authorListHook from "./hooks/authorListHook";
+import authorListInitHook from "./hooks/authorListInitHook";
 
 function App() {
   const account = useCurrentAccount();
@@ -22,12 +24,13 @@ function App() {
   const AuthorRoomCreateEvent = "AuthorRoomCreateEvent";
 
   const { authorRoomEvents, authorRoomID } = authorRoomEventHook(PACKAGE_ID, MODULE_NAME, AuthorRoomCreateEvent);
+  // console.log("authorRoomID", authorRoomID);
 
-  if (authorRoomID) {
+  const { authorCount, authorList } = authorListHook();
+  // console.log("authorList", authorList, authorCount);
 
-    console.log('authorRoomID', authorRoomID);
-
-  }
+  const { authorTablelistType } = authorListInitHook();
+  // console.log("authorTablelistType", authorTablelistType);
 
   const [AuthorName, setAuthorName] = useState('author');
 
