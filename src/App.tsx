@@ -3,7 +3,7 @@ import { TransactionBlock } from "@mysten/sui.js/transactions";
 // import { Transaction } from "@mysten/sui/transactions";
 import { Box, Container, Flex, Heading, Text } from "@radix-ui/themes";
 import { WalletStatus } from "./WalletStatus";
-import { CompAuthorList } from './CompAuthorList';
+import CompAuthorList from './CompAuthorList';
 import LowString from "./LowString";
 import { useNetworkVariable } from "./networkConfig";
 import { useMemo, useState } from "react";
@@ -11,6 +11,7 @@ import { SuiEvent } from "@mysten/sui.js/client";
 import authorRoomEventHook from "./hooks/authorRoomEventHook";
 import authorListHook from "./hooks/authorListHook";
 import authorListInitHook from "./hooks/authorListInitHook";
+import authorListRealId from "./hooks/authorListRealId";
 
 function App() {
   const account = useCurrentAccount();
@@ -31,6 +32,9 @@ function App() {
 
   const { authorTablelistType } = authorListInitHook();
   // console.log("authorTablelistType", authorTablelistType);
+
+  const { tbAuthorlistDetails } = authorListRealId();
+  console.log("tbAuthorlistDetails", tbAuthorlistDetails);
 
   const [AuthorName, setAuthorName] = useState('author');
 
@@ -276,7 +280,7 @@ function App() {
                 <hr />
               </Box>
               <Flex>
-                <CompAuthorList />
+                <CompAuthorList autholist={tbAuthorlistDetails} />
               </Flex>
             </Box>
             <Box style={{ flex: '1' }}>
