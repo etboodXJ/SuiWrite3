@@ -17,9 +17,11 @@ const CompAuthorList: React.FC<Props> = ({ autholist }) => {
             author ? (
               <Flex >
                 <Box className="bold-large-text">
-                  {author.fields.username.map((codePoint: number) =>
-                    String.fromCodePoint(codePoint)
-                  ).join('')}
+                  {
+                    author.fields.username.map((codePoint: number) =>
+                      String.fromCodePoint(codePoint)
+                    ).join('')
+                  }
                 </Box>
                 <Box ml="4" className="bold-large-text">
                   {author.fields.st == 0 ? "Pending" : "Approved"}

@@ -26,6 +26,7 @@ module write3::write3 {
 
     const EAuthorBookNotEnough:u64 = 4000;
     const EAuthorNotAuthor:u64 = 4001;
+    const ERR_HASALREADYCreated :u64 = 4002;
 
     // 作者登记结构体
     // 此结构体来存储作者房间的信息（共享对象）
@@ -121,8 +122,10 @@ module write3::write3 {
 
     // 作者注册申请待批准 
     public entry fun createAuthor(room:&mut AuthorRoom, username: vector<u8>, banned: bool, rank: u64, ctx: &mut TxContext) {
-        let id = object::new(ctx);
         let user = tx_context::sender(ctx);
+        assert!(!vector::contains(&room.usrList, &user), ERR_HASALREADYCreated);
+
+        let id = object::new(ctx);
         let nowCount = vector::length(&room.usrList);
         let author = Author { 
           id, 

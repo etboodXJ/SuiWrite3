@@ -1,4 +1,3 @@
-/*
 #[test_only]
 module write3::write3_tests {
     // uncomment this line to import the module
@@ -16,4 +15,3 @@ module write3::write3_tests {
         abort ENotImplemented
     }
 }
-*/
