@@ -1,9 +1,16 @@
 # Sui Write3 demo
 ## A platform for novel authors to upload novels
+## SUI Network
 
 ##  note
 
 It is expected that the testnet will be launched in the near future, and the devnet needs to clear the data, so the various matters preparing for the testnet in the near future are being compiled and summarized.
+
+## Early financing sui address
+
+0xb32458b39bbf1d504cc2deadf51775b1bce2d32a8aa8145d7fcbbd7c0335e328
+
+TG group: https://t.me/+zOCqBdkagrlmODk9
 
 ## dapp
 
