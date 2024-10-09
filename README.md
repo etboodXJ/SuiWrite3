@@ -1,6 +1,11 @@
 # Sui Write3 demo
 ## A platform for novel authors to upload novels
 
+##  note
+
+It is expected that the testnet will be launched in the near future, and the devnet needs to clear the data, so the various matters preparing for the testnet in the near future are being compiled and summarized.
+
+## dapp
 
 This dApp was created using `@mysten/create-dapp` that sets up a basic React
 Client dApp using the following tools:
