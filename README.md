@@ -4,7 +4,11 @@
 
 ##  note
 
-testnet is not launched yet, and the devnet needs to clear the data.  (2024-10-18)
+2024-10-25
+The testnet has been launched
+
+2024-10-18
+testnet is not launched yet, and the devnet needs to clear the data.  
 
 
 It is expected that the testnet will be launched in the near future, and the devnet needs to clear the data, so the various matters preparing for the testnet in the near future are being compiled and summarized.
