@@ -8,7 +8,8 @@ module write3::write3 {
     // use sui::transfer;
     // use sui::tx_context::{Self, TxContext};
     use sui::transfer;
-
+    use sui::object::{Self, UID};
+    use sui::tx_context::TxContext;
     use std::string::{Self,utf8,String};
     use std::ascii::{Self, String as TString};
     use sui::clock::{Self, Clock};
@@ -23,6 +24,7 @@ module write3::write3 {
     //use hdmv::hdbase;
     use std::hash::sha2_256;
     use std::debug::{Self,print};
+    use sui::random;
 
     const EAuthorBookNotEnough:u64 = 4000;
     const EAuthorNotAuthor:u64 = 4001;
@@ -90,6 +92,53 @@ module write3::write3 {
     //events
     public struct AuthorRoomCreateEvent has copy, drop {
         id: ID,
+    }
+
+    // 作品创建事件
+    public struct WorkCreatedEvent has copy, drop {
+        id: ID,
+        author_id: u64,
+        title: vector<u8>,
+    }
+
+    // 章节创建事件
+    public struct ChapterCreatedEvent has copy, drop {
+        id: ID,
+        work_id: ID,
+        chapter_number: u64,
+        title: vector<u8>,
+    }
+
+    // 作者状态更新事件
+    public struct AuthorStatusUpdatedEvent has copy, drop {
+        author_id: u64,
+        new_status: u8,
+    }
+
+    // 作品评分事件
+    public struct WorkRatedEvent has copy, drop {
+        work_id: ID,
+        rater: address,
+        rating: u8,
+    }
+
+    // 作品评论事件
+    public struct WorkCommentedEvent has copy, drop {
+        work_id: ID,
+        commenter: address,
+        comment: vector<u8>,
+    }
+
+    // 作品阅读统计
+    public struct WorkReadStats has store {
+        total_reads: u64,
+        unique_readers: VecSet<address>,
+    }
+
+    // 作品收藏事件
+    public struct WorkFavoritedEvent has copy, drop {
+        work_id: ID,
+        user: address,
     }
 
     //otw
